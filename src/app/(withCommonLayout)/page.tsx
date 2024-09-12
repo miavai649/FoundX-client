@@ -1,7 +1,9 @@
+import { Input } from '@nextui-org/input'
+
 export default function Home() {
   return (
-    <>
-      <h1>This is home page</h1>
-    </>
+    <div className="h-[calc(100vh-64px)] bg-[url('/glass.jpg')] bg-cover bg-center">
+      <Input />
+    </div>
   )
 }
