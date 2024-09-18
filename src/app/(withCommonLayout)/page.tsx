@@ -6,9 +6,7 @@ export default function Home() {
   return (
     <>
       <Landing />
-      <Suspense fallback={<p>Loading...</p>}>
-        <RecentPost />
-      </Suspense>
+      <RecentPost />
     </>
   )
 }
