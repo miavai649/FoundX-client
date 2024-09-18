@@ -15,6 +15,7 @@ import clsx from 'clsx'
 import { siteConfig } from '@/src/config/site'
 import { ThemeSwitch } from '@/src/components/UI/theme-switch'
 import { Logo } from '@/src/components/icons'
+import NavbarDropdown from './NavbarDropdown'
 
 export const Navbar = () => {
   return (
@@ -48,6 +49,9 @@ export const Navbar = () => {
         justify='end'>
         <NavbarItem className='hidden sm:flex gap-2'>
           <ThemeSwitch />
+        </NavbarItem>
+        <NavbarItem className='hidden sm:flex gap-2'>
+          <NavbarDropdown />
         </NavbarItem>
       </NavbarContent>
 
