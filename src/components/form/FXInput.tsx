@@ -20,10 +20,15 @@ const FXInput = ({
   label,
   name
 }: IProps) => {
-  const { register } = useFormContext()
+  const {
+    register,
+    formState: { errors }
+  } = useFormContext()
 
   return (
     <Input
+      isInvalid={!!errors[name]}
+      errorMessage={errors[name] ? (errors[name].message as string) : ''}
       {...register(name)}
       variant={variant}
       size={size}
