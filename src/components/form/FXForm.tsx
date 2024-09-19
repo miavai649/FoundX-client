@@ -1,10 +1,40 @@
-interface IProps {}
+import { ReactNode } from 'react'
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm
+} from 'react-hook-form'
 
-const FXForm = ({}: IProps) => {
+interface IFormConfig {
+  defaultValues?: Record<string, any>
+  resolver?: any
+}
+
+interface IProps extends IFormConfig {
+  onsubmit: SubmitHandler<FieldValues>
+  children: ReactNode
+}
+
+const FXForm = ({ children, onsubmit, defaultValues, resolver }: IProps) => {
+  const formConfig: IFormConfig = {}
+
+  if (!!defaultValues) {
+    formConfig['defaultValues'] = defaultValues
+  }
+
+  if (!!resolver) {
+    formConfig['resolver'] = resolver
+  }
+
+  const methods = useForm(formConfig)
+
+  const submitHandler = methods.handleSubmit
+
   return (
-    <div>
-      <h1>This is FXForm component</h1>
-    </div>
+    <FormProvider {...methods}>
+      <form onSubmit={submitHandler(onsubmit)}>{children}</form>
+    </FormProvider>
   )
 }
 
