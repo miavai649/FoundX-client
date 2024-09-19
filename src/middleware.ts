@@ -12,15 +12,15 @@ const roleBasedRoutes = {
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  const user = {
-    name: 'Noor',
-    token: 'hdfoiwheo',
-    role: 'USER'
-  }
+  // const user = {
+  //   name: 'Noor',
+  //   token: 'hdfoiwheo',
+  //   role: 'USER'
+  // }
 
   const { pathname } = request.nextUrl
 
-  // const user = undefined
+  const user = undefined
 
   if (!user) {
     if (AuthRoutes.includes(pathname)) {
