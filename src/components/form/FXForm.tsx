@@ -1,10 +1,6 @@
+'use client'
 import { ReactNode } from 'react'
-import {
-  FieldValues,
-  FormProvider,
-  SubmitHandler,
-  useForm
-} from 'react-hook-form'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 
 interface IFormConfig {
   defaultValues?: Record<string, any>
@@ -12,11 +8,11 @@ interface IFormConfig {
 }
 
 interface IProps extends IFormConfig {
-  onsubmit: SubmitHandler<FieldValues>
+  onSubmit: SubmitHandler<any>
   children: ReactNode
 }
 
-const FXForm = ({ children, onsubmit, defaultValues, resolver }: IProps) => {
+const FXForm = ({ children, onSubmit, defaultValues, resolver }: IProps) => {
   const formConfig: IFormConfig = {}
 
   if (!!defaultValues) {
@@ -33,7 +29,7 @@ const FXForm = ({ children, onsubmit, defaultValues, resolver }: IProps) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={submitHandler(onsubmit)}>{children}</form>
+      <form onSubmit={submitHandler(onSubmit)}>{children}</form>
     </FormProvider>
   )
 }
