@@ -17,7 +17,7 @@ const NavbarDropdown = () => {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Avatar name={'Noor'} />
+        <Avatar className='cursor-pointer' name={'Noor'} />
       </DropdownTrigger>
       <DropdownMenu aria-label='Static Actions'>
         <DropdownItem onClick={() => handleNavigation('/profile')}>
