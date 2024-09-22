@@ -9,10 +9,13 @@ import loginValidationSchema from '@/src/schemas/login.schema'
 import { useUserLogin } from '@/src/hooks/auth.hook'
 import Loading from '@/src/components/UI/Loading'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useUser } from '@/src/context/user.provider'
 
 const page = () => {
   const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin()
   const router = useRouter()
+
+  const { setIsLoading: userLoading } = useUser()
 
   const searchParams = useSearchParams()
 
@@ -28,6 +31,7 @@ const page = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     await handleUserLogin(data)
+    userLoading(true)
   }
 
   return (
