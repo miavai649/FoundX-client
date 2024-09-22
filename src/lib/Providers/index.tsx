@@ -7,6 +7,7 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { ThemeProviderProps } from 'next-themes/dist/types'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Toaster } from 'sonner'
 
 export interface ProvidersProps {
   children: React.ReactNode
@@ -24,6 +25,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
       <NextUIProvider navigate={router.push}>
         <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
         <ReactQueryDevtools initialIsOpen={false} />
+        <Toaster richColors position='bottom-left' />
       </NextUIProvider>
     </QueryClientProvider>
   )
