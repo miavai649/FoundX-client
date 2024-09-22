@@ -10,7 +10,7 @@ import {
 } from '@nextui-org/dropdown'
 import { useRouter } from 'next/navigation'
 const NavbarDropdown = () => {
-  const { setIsLoading: userLoading } = useUser()
+  const { user, setIsLoading: userLoading } = useUser()
 
   const router = useRouter()
 
@@ -26,7 +26,7 @@ const NavbarDropdown = () => {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Avatar className='cursor-pointer' name={'Noor'} />
+        <Avatar className='cursor-pointer' src={user?.profilePhoto} />
       </DropdownTrigger>
       <DropdownMenu aria-label='Static Actions'>
         <DropdownItem onClick={() => handleNavigation('/profile')}>
