@@ -8,9 +8,23 @@ import { FieldValues, SubmitHandler } from 'react-hook-form'
 import loginValidationSchema from '@/src/schemas/login.schema'
 import { useUserLogin } from '@/src/hooks/auth.hook'
 import Loading from '@/src/components/UI/Loading'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const page = () => {
-  const { mutate: handleUserLogin, isPending } = useUserLogin()
+  const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin()
+  const router = useRouter()
+
+  const searchParams = useSearchParams()
+
+  const redirect = searchParams.get('redirect')
+
+  if (!isPending && isSuccess) {
+    if (redirect) {
+      router.push(redirect)
+    } else {
+      router.push('/')
+    }
+  }
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     await handleUserLogin(data)

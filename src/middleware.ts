@@ -14,7 +14,6 @@ const roleBasedRoutes = {
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  console.log('🚀 ~ middleware ~ pathname:', pathname)
 
   const user = await getCurrentUser()
 
@@ -22,7 +21,9 @@ export async function middleware(request: NextRequest) {
     if (AuthRoutes.includes(pathname)) {
       return NextResponse.next()
     } else {
-      return NextResponse.redirect(new URL('/login', request.url))
+      return NextResponse.redirect(
+        new URL(`/login?redirect=${pathname}`, request.url)
+      )
     }
   }
 
