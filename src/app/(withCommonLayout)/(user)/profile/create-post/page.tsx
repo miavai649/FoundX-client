@@ -14,6 +14,7 @@ import {
   useForm
 } from 'react-hook-form'
 import { allDistict } from '@bangladeshi/bangladesh-address'
+import { useGetCategory } from '@/src/hooks/categories.hook'
 
 const cityOptions = allDistict()
   .sort()
@@ -25,6 +26,19 @@ const cityOptions = allDistict()
   })
 
 const page = () => {
+  const { data: categoriesData, isLoading: categoryLoading } = useGetCategory()
+
+  let categoryOptions: { key: string; label: string }[] = []
+
+  if (categoriesData?.data && !categoryLoading) {
+    categoryOptions = categoriesData?.data
+      ?.sort()
+      ?.map((category: { _id: string; name: string }) => ({
+        key: category._id,
+        label: category.name
+      }))
+  }
+
   const methods = useForm()
 
   const { control, handleSubmit } = methods
@@ -79,7 +93,12 @@ const page = () => {
           </div>
           <div className='flex flex-wrap gap-2 py-2'>
             <div className='min-w-fit flex-1'>
-              <FXInput label='Category' name='category' />
+              <FXSelect
+                label='Category'
+                name='category'
+                placeholder='Select a category'
+                options={categoryOptions}
+              />
             </div>
             <div className='min-w-fit flex-1'>
               <FXInput label='Upload image' name='category' />
