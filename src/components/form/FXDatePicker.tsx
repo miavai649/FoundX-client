@@ -4,12 +4,17 @@ import { Controller } from 'react-hook-form'
 
 interface IProps extends ICustomInput {}
 
-const FXDatePicker = ({ label, name }: IProps) => {
+const FXDatePicker = ({ label, name, variant = 'bordered' }: IProps) => {
   return (
     <Controller
       name={name}
-      render={({ field: { value, ...field } }) => (
-        <DatePicker label={label} {...field} />
+      render={({ field: { value, ...fields } }) => (
+        <DatePicker
+          className='min-w-full sm:min-w-[225px]'
+          label={label}
+          variant={variant}
+          {...fields}
+        />
       )}
     />
   )
