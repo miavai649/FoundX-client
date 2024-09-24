@@ -9,7 +9,10 @@ interface IDate {
 }
 
 const dateToIso = (date: IDate) => {
-  return new Date(`${date.month}-${date.day}-${date.year}`).toISOString()
+  if (!date) {
+    return new Date().toISOString()
+  }
+  return new Date(`${date?.month}-${date?.day}-${date?.year}`).toISOString()
 }
 
 export default dateToIso
