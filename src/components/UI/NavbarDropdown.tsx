@@ -15,7 +15,6 @@ const NavbarDropdown = () => {
 
   const router = useRouter()
   const pathName = usePathname()
-  console.log('🚀 ~ NavbarDropdown ~ pathName:', pathName)
 
   const handleNavigation = (pathName: string) => {
     router.push(pathName)
