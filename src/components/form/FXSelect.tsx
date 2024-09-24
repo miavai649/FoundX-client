@@ -10,7 +10,7 @@ interface IProps extends ICustomInput {
   placeholder: string
 }
 
-const FXSelect = ({ options, label, name, placeholder }: IProps) => {
+const FXSelect = ({ options, label, name, placeholder, disabled }: IProps) => {
   const {
     register,
     formState: { errors }
@@ -20,6 +20,7 @@ const FXSelect = ({ options, label, name, placeholder }: IProps) => {
     <Select
       {...register(name)}
       label={label}
+      isDisabled={disabled}
       placeholder={placeholder}
       className='min-w-full sm:min-w-[225px]'>
       {options.map((option) => (

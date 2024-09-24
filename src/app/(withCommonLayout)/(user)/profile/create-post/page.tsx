@@ -26,7 +26,11 @@ const cityOptions = allDistict()
   })
 
 const page = () => {
-  const { data: categoriesData, isLoading: categoryLoading } = useGetCategory()
+  const {
+    data: categoriesData,
+    isLoading: categoryLoading,
+    isSuccess: categorySuccess
+  } = useGetCategory()
 
   let categoryOptions: { key: string; label: string }[] = []
 
@@ -96,12 +100,13 @@ const page = () => {
               <FXSelect
                 label='Category'
                 name='category'
+                disabled={!categorySuccess}
                 placeholder='Select a category'
                 options={categoryOptions}
               />
             </div>
             <div className='min-w-fit flex-1'>
-              <FXInput label='Upload image' name='category' />
+              <input type='file' multiple id='' />
             </div>
           </div>
 

@@ -53,4 +53,5 @@ export interface ICustomInput {
   type?: 'text' | 'email' | 'password'
   label: string
   name: string
+  disabled?: boolean
 }
