@@ -1,4 +1,5 @@
 'use client'
+import { protectedRoutes } from '@/src/constant'
 import { useUser } from '@/src/context/user.provider'
 import { logout } from '@/src/services/AuthService'
 import { Avatar } from '@nextui-org/avatar'
@@ -8,11 +9,13 @@ import {
   DropdownMenu,
   DropdownTrigger
 } from '@nextui-org/dropdown'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 const NavbarDropdown = () => {
   const { user, setIsLoading: userLoading } = useUser()
 
   const router = useRouter()
+  const pathName = usePathname()
+  console.log('🚀 ~ NavbarDropdown ~ pathName:', pathName)
 
   const handleNavigation = (pathName: string) => {
     router.push(pathName)
@@ -21,6 +24,10 @@ const NavbarDropdown = () => {
   const handleLogout = () => {
     logout()
     userLoading(true)
+
+    if (protectedRoutes.some((route) => pathName.match(route))) {
+      router.push('/')
+    }
   }
 
   return (
