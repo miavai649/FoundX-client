@@ -1,6 +1,6 @@
 import { ICustomInput } from '@/src/types'
 import { DatePicker } from '@nextui-org/date-picker'
-import { Controller, useFormContext } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 
 interface IProps extends ICustomInput {}
 

@@ -2,6 +2,7 @@
 
 import FXDatePicker from '@/src/components/form/FXDatePicker'
 import FXInput from '@/src/components/form/FXInput'
+import dateToIso from '@/src/utils/dateToIso'
 import { Button } from '@nextui-org/button'
 import { Divider } from '@nextui-org/divider'
 import {
@@ -27,7 +28,8 @@ const page = () => {
       ...data,
       questions: data.questions.map(
         (question: { value: string }) => question.value
-      )
+      ),
+      dateFound: dateToIso(data.dateFound)
     }
 
     console.log(postData)
