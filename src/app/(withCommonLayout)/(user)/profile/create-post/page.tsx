@@ -140,11 +140,17 @@ const page = () => {
               />
             </div>
           </div>
-
-          <div className='flex flex-wrap-reverse gap-2 py-2'>
-            <div className='min-w-fit flex-1'>
-              <FXInput label='Description' name='description' />
-            </div>
+          <div className='flex gap-5 my-5 flex-wrap'>
+            {imagePreviews.length > 0 &&
+              imagePreviews?.map((imageDataUrl) => (
+                <div className='border-2 border-dashed border-default-300 p-2 relative size-48'>
+                  <img
+                    className='w-full h-full object-cover object-center rounded-md'
+                    src={imageDataUrl}
+                    alt='item'
+                  />
+                </div>
+              ))}
           </div>
 
           <Divider className='my-5' />
