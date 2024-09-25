@@ -4,6 +4,7 @@ import { Button } from '@nextui-org/button'
 import { format } from 'date-fns'
 import { Calendar, MapPin } from 'lucide-react'
 import Link from 'next/link'
+import ImageGallery from './ImageGallery'
 
 interface IProps {
   post: IPost
@@ -56,6 +57,8 @@ const Post = ({ post }: IProps) => {
           </div>
           <p>{description}</p>
         </div>
+
+        <ImageGallery images={images} />
 
         <div className='flex gap-5 mt-4'>
           <Button variant='light' className='flex-1'>
