@@ -15,11 +15,11 @@ import clsx from 'clsx'
 
 import { siteConfig } from '@/src/config/site'
 import { ThemeSwitch } from '@/src/components/UI/theme-switch'
-import { Logo } from '@/src/components/icons'
 import NavbarDropdown from './NavbarDropdown'
 import { useUser } from '@/src/context/user.provider'
 import { Button } from '@nextui-org/button'
 import { useRouter } from 'next/navigation'
+import { Logo } from '@/src/assets/icons'
 
 export const Navbar = () => {
   const { user } = useUser()
