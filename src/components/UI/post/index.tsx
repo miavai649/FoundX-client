@@ -67,11 +67,18 @@ const Post = ({ post }: IProps) => {
         <ImageGallery images={images} />
 
         <div className='flex gap-5 mt-4'>
-          {loggedInUser?.email && (
-            <ClaimRequestModal id={_id} questions={questions} />
+          {email !== loggedInUser?.email && (
+            <>
+              {loggedInUser?.email && (
+                <ClaimRequestModal id={_id} questions={questions} />
+              )}
+              {!loggedInUser?.email && <AuthenticationModal id={_id} />}
+            </>
           )}
-          {!loggedInUser?.email && <AuthenticationModal id={_id} />}
-          <div className='w-[1px] bg-default-200'></div>
+          {email !== loggedInUser?.email && (
+            <div className='w-[1px] bg-default-200'></div>
+          )}
+
           <Button variant='light' className='flex-1'>
             Share
           </Button>
