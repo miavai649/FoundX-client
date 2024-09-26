@@ -48,14 +48,14 @@ export default function FXModal({
             <>
               <ModalHeader className='flex flex-col gap-1'>{title}</ModalHeader>
               <ModalBody>{children}</ModalBody>
-              <ModalFooter>
+              {/* <ModalFooter>
                 <Button color='danger' variant='light' onPress={onClose}>
                   Close
                 </Button>
                 <Button color='primary' onPress={onClose}>
                   Action
                 </Button>
-              </ModalFooter>
+              </ModalFooter> */}
             </>
           )}
         </ModalContent>
