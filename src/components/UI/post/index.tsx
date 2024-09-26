@@ -1,3 +1,4 @@
+'use client'
 import { IPost, IUser } from '@/src/types'
 import { Avatar } from '@nextui-org/avatar'
 import { Button } from '@nextui-org/button'
@@ -5,6 +6,7 @@ import { format } from 'date-fns'
 import { Calendar, MapPin } from 'lucide-react'
 import Link from 'next/link'
 import ImageGallery from './ImageGallery'
+import ClaimRequestModal from '../../modals/ClaimRequestModal'
 
 interface IProps {
   post: IPost
@@ -61,9 +63,7 @@ const Post = ({ post }: IProps) => {
         <ImageGallery images={images} />
 
         <div className='flex gap-5 mt-4'>
-          <Button variant='light' className='flex-1'>
-            Claim Request
-          </Button>
+          <ClaimRequestModal />
           <div className='w-[1px] bg-default-200'></div>
           <Button variant='light' className='flex-1'>
             Share
