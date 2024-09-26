@@ -4,15 +4,27 @@ import FXModal from './FXModal'
 import FXInput from '../form/FXInput'
 import FXTextarea from '../form/FXTextarea'
 import { Button } from '@nextui-org/button'
+import { useClaimRequest } from '@/src/hooks/claimRequest.hook'
+import { Spinner } from '@nextui-org/spinner'
 
 interface IProps {
-  _id: string
+  id: string
   questions: string[]
 }
 
-const ClaimRequestModal = ({ _id, questions }: IProps) => {
+const ClaimRequestModal = ({ id, questions }: IProps) => {
+  const { mutate: handleClaimRequest, isPending } = useClaimRequest()
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data)
+    const claimRequestData = {
+      item: id,
+      description: data.description,
+      answers: Object.keys(data)
+        .filter((formElement) => formElement.startsWith('answer'))
+        .map((answer) => data[answer])
+    }
+
+    handleClaimRequest(claimRequestData)
   }
 
   return (
@@ -31,7 +43,12 @@ const ClaimRequestModal = ({ _id, questions }: IProps) => {
           </div>
         ))}
         <FXTextarea label='Description' name='description' />
-        <Button className='w-full my-2 flex-1' size='lg' type='submit'>
+        <Button
+          isLoading={isPending}
+          spinner={<Spinner size='sm' color='default' />}
+          className='w-full my-2 flex-1'
+          size='lg'
+          type='submit'>
           Send
         </Button>
       </FXForm>

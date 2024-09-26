@@ -63,7 +63,7 @@ const Post = ({ post }: IProps) => {
         <ImageGallery images={images} />
 
         <div className='flex gap-5 mt-4'>
-          <ClaimRequestModal _id={_id} questions={questions} />
+          <ClaimRequestModal id={_id} questions={questions} />
           <div className='w-[1px] bg-default-200'></div>
           <Button variant='light' className='flex-1'>
             Share
