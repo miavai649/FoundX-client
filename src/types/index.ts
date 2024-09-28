@@ -53,6 +53,7 @@ export interface IInput {
   type?: string
   label: string
   name: string
+  isRequired?: boolean
   disabled?: boolean
 }
 
